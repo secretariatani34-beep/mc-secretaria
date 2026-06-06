@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secretaria - セクレタリア｜広報支援・研修・MC</title>
+  <meta name="description" content="社長ひとりが頑張る広報、そろそろ終わりにしませんか。経営者の想いをチーム全体に浸透させ、組織から発信が生まれる広報支援。奈良の広報支援会社セクレタリア。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #F6F1E7;
+      color: #2A2621;
+      font-family: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+      font-weight: 400;
+      line-height: 1.9;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    .mincho { font-family: 'Shippori Mincho', 'Noto Serif JP', serif; }
+
+    /* ===== HEADER ===== */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 18px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(246,241,231,0.93);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(42,38,33,0.08);
+    }
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-style: italic;
+      letter-spacing: 0.05em;
+    }
+    nav { display: flex; gap: 28px; align-items: center; }
+    nav a {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      color: #6F665A;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: #C24A30; }
+    .nav-cta {
+      background: #C24A30;
+      color: #F6F1E7 !important;
+      padding: 10px 22px;
+      letter-spacing: 0.12em;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: #a83a24 !important; color: #F6F1E7 !important; }
+
+    /* ===== HERO ===== */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 80px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: 'Secretaria';
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(80px, 14vw, 190px);
+      font-style: italic;
+      color: rgba(194,74,48,0.045);
+      position: absolute;
+      right: -10px;
+      top: 50%;
+      transform: translateY(-50%);
+      white-space: nowrap;
+      pointer-events: none;
+      line-height: 1;
+    }
+    .hero-content { max-width: 680px; position: relative; z-index: 1; }
+    .hero-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      color: #C24A30;
+      margin-bottom: 36px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .hero-label::before {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: #C24A30;
+    }
+    h1 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: clamp(28px, 3.6vw, 52px);
+      font-weight: 700;
+      line-height: 1.65;
+      letter-spacing: 0.04em;
+      margin-bottom: 32px;
+    }
+    .hero-sub {
+      font-size: 15px;
+      line-height: 2.1;
+      color: #6F665A;
+      margin-bottom: 52px;
+      max-width: 500px;
+    }
+    .btn {
+      display: inline-block;
+      background: #C24A30;
+      color: #F6F1E7;
+      padding: 18px 48px;
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      font-weight: 500;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      border: none;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .btn:hover { background: #a83a24; transform: translateY(-2px); }
+
+    /* ===== SECTION COMMONS ===== */
+    section { padding: 100px 80px; }
+    .sec-en {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.38em;
+      color: #C24A30;
+      display: block;
+      margin-bottom: 16px;
+    }
+    .sec-title {
+      font-family: 'Shippori Mincho', serif;
+      font-size: clamp(22px, 2.8vw, 36px);
+      font-weight: 600;
+      line-height: 1.65;
+      margin-bottom: 56px;
+    }
+
+    /* ===== PAIN ===== */
+    #pain { background: #FBF7EF; }
+    .pain-lead {
+      font-family: 'Shippori Mincho', serif;
+      font-size: clamp(16px, 1.8vw, 21px);
+      line-height: 2.1;
+      max-width: 640px;
+      margin-bottom: 48px;
+      color: #2A2621;
+    }
+    .pain-list { display: flex; flex-direction: column; gap: 14px; max-width: 580px; }
+    .pain-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      padding: 18px 24px;
+      background: #F6F1E7;
+      border-left: 3px solid #C24A30;
+      font-size: 14px;
+      line-height: 1.85;
+    }
+
+    /* ===== PHILOSOPHY ===== */
+    .phil-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .phil-card {
+      padding: 44px 32px;
+      background: #FBF7EF;
+    }
+    .phil-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 44px;
+      color: rgba(194,74,48,0.14);
+      line-height: 1;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .phil-title {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 19px;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+    .phil-text { font-size: 14px; line-height: 2; color: #6F665A; }
+
+    /* ===== SERVICES ===== */
+    #services { background: #2A2621; color: #FBF7EF; }
+    #services .sec-title { color: #FBF7EF; margin-bottom: 56px; }
+    .svc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .svc-card {
+      background: #332F29;
+      padding: 44px 32px;
+      transition: background 0.2s;
+    }
+    .svc-card:hover { background: #3c3830; }
+    .svc-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 0.25em;
+      color: #C24A30;
+      display: block;
+      margin-bottom: 20px;
+    }
+    .svc-title {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 19px;
+      font-weight: 600;
+      line-height: 1.65;
+      margin-bottom: 12px;
+      color: #FBF7EF;
+    }
+    .svc-sub {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: rgba(251,247,239,0.45);
+      margin-bottom: 20px;
+    }
+    .svc-desc { font-size: 13px; line-height: 2; color: rgba(251,247,239,0.68); }
+    .svc-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+    .tag {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      padding: 4px 11px;
+      border: 1px solid rgba(251,247,239,0.22);
+      color: rgba(251,247,239,0.55);
+    }
+
+    /* ===== WORKS ===== */
+    .media-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+      padding: 56px;
+      background: #FBF7EF;
+      margin-bottom: 72px;
+    }
+    .media-img {
+      background: #E8E0D0;
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .media-img img { width: 100%; height: 100%; object-fit: cover; }
+    .media-ph { text-align: center; color: #8C8070; }
+    .media-ph svg { margin: 0 auto 10px; }
+    .media-ph span { font-size: 12px; letter-spacing: 0.1em; }
+    .media-badge {
+      position: absolute;
+      top: 14px; left: 14px;
+      background: #C24A30;
+      color: #F6F1E7;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      padding: 4px 12px;
+    }
+    .media-outlet {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      letter-spacing: 0.32em;
+      color: #C24A30;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .media-outlet::before { content: ''; width: 24px; height: 1px; background: #C24A30; }
+    .media-headline {
+      font-family: 'Shippori Mincho', serif;
+      font-size: clamp(18px, 2vw, 26px);
+      font-weight: 600;
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+    .media-date { font-size: 13px; color: #6F665A; letter-spacing: 0.12em; }
+
+    .works-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+    .works-col-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      color: #C24A30;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .works-col-label::after { content: ''; flex: 1; height: 1px; background: rgba(194,74,48,0.28); }
+    .work-item {
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(42,38,33,0.09);
+      display: flex;
+      gap: 20px;
+      align-items: baseline;
+    }
+    .work-year {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      color: #C24A30;
+      letter-spacing: 0.08em;
+      min-width: 44px;
+    }
+    .work-desc { font-size: 13px; line-height: 1.85; }
+
+    /* ===== ABOUT ===== */
+    #about { background: #FBF7EF; }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+    .about-photo {
+      background: #DDD5C5;
+      aspect-ratio: 3/4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .about-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .ph-wrap { text-align: center; padding: 32px; }
+    .ph-circle {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: #C24A30;
+      color: #F6F1E7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      margin: 0 auto 14px;
+    }
+    .ph-wrap p { font-size: 11px; color: #8C8070; line-height: 1.8; }
+    .about-role { font-size: 12px; letter-spacing: 0.2em; color: #6F665A; margin-bottom: 6px; }
+    .about-name {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 30px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .about-name-en {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      font-style: italic;
+      color: #6F665A;
+      letter-spacing: 0.12em;
+      margin-bottom: 36px;
+    }
+    .about-text { font-size: 15px; line-height: 2.2; color: #4A443E; margin-bottom: 32px; }
+    .career-label { font-size: 11px; letter-spacing: 0.25em; color: #C24A30; margin-bottom: 16px; padding-top: 28px; border-top: 1px solid rgba(42,38,33,0.12); }
+    .career-item {
+      display: flex;
+      gap: 20px;
+      padding: 10px 0;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(42,38,33,0.06);
+    }
+    .career-yr { color: #6F665A; min-width: 44px; }
+
+    /* ===== COMPANY ===== */
+    #company table { width: 100%; max-width: 680px; border-collapse: collapse; }
+    #company tr { border-bottom: 1px solid rgba(42,38,33,0.1); }
+    #company th, #company td { padding: 20px 0; font-size: 14px; text-align: left; }
+    #company th { width: 160px; font-weight: 400; color: #6F665A; font-size: 13px; letter-spacing: 0.1em; }
+    #company a { color: #C24A30; text-decoration: underline; }
+
+    /* ===== CTA ===== */
+    #cta {
+      background: #C24A30;
+      color: #FBF7EF;
+      text-align: center;
+      padding: 100px 80px;
+    }
+    #cta .sec-en { color: rgba(251,247,239,0.55); }
+    #cta .sec-title { color: #FBF7EF; margin-bottom: 20px; }
+    #cta p { font-size: 15px; opacity: 0.82; margin-bottom: 52px; max-width: 440px; margin-left: auto; margin-right: auto; line-height: 2; }
+    .btn-light {
+      display: inline-block;
+      background: #F6F1E7;
+      color: #C24A30;
+      padding: 20px 56px;
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      font-weight: 500;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-light:hover { background: #fff; transform: translateY(-2px); }
+
+    /* ===== CONTACT ===== */
+    #contact { background: #FBF7EF; }
+    .form-wrap { max-width: 580px; }
+    .form-note { font-size: 13px; color: #6F665A; line-height: 1.9; margin-bottom: 40px; }
+    .form-group { margin-bottom: 24px; }
+    .form-group label { display: block; font-size: 12px; letter-spacing: 0.14em; color: #6F665A; margin-bottom: 8px; }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px 16px;
+      background: #F6F1E7;
+      border: 1px solid rgba(42,38,33,0.2);
+      color: #2A2621;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      outline: none;
+      transition: border-color 0.2s;
+      border-radius: 0;
+      -webkit-appearance: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: #C24A30; }
+    .form-group textarea { min-height: 130px; resize: vertical; }
+    .required { color: #C24A30; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #2A2621;
+      color: rgba(251,247,239,0.55);
+      padding: 56px 80px 40px;
+    }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+      gap: 32px;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-style: italic;
+      color: #FBF7EF;
+      margin-bottom: 6px;
+    }
+    .footer-tagline { font-size: 11px; letter-spacing: 0.18em; }
+    .footer-links { display: flex; flex-direction: column; gap: 12px; align-items: flex-end; }
+    .footer-links a {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      color: rgba(251,247,239,0.45);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: rgba(251,247,239,0.9); }
+    .copyright {
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      padding-top: 32px;
+      border-top: 1px solid rgba(251,247,239,0.09);
+      color: rgba(251,247,239,0.28);
+    }
+
+    /* ===== SCROLL FADE ===== */
+    .fade { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade.on { opacity: 1; transform: none; }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 860px) {
+      header { padding: 14px 20px; }
+      nav a:not(.nav-cta) { display: none; }
+      section { padding: 72px 24px; }
+      #hero { padding: 100px 24px 72px; }
+      #hero::before { font-size: 56px; opacity: 0.6; }
+      .phil-grid { grid-template-columns: 1fr; gap: 16px; }
+      .svc-grid { grid-template-columns: 1fr; gap: 2px; }
+      .works-cols { grid-template-columns: 1fr; gap: 40px; }
+      .media-block { grid-template-columns: 1fr; padding: 32px 24px; gap: 32px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-photo { max-width: 260px; aspect-ratio: 1/1; }
+      footer { padding: 48px 24px 32px; }
+      .footer-top { flex-direction: column; }
+      .footer-links { align-items: flex-start; }
+      #cta { padding: 72px 24px; }
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 26px; }
+      .btn { padding: 16px 32px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="logo">Secretaria</div>
+  <nav>
+    <a href="#services">サービス</a>
+    <a href="#works">実績</a>
+    <a href="#about">代表</a>
+    <a href="#company">会社概要</a>
+    <a href="#contact" class="nav-cta">無料相談</a>
+  </nav>
+</header>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-content fade">
+    <p class="hero-label">SECRETARIA / 広報支援・研修・MC</p>
+    <h1>
+      社長ひとりが頑張る広報、<br>
+      そろそろ終わりにしませんか。
+    </h1>
+    <p class="hero-sub">
+      「うちの強みって何だろう」が、社員自身の言葉になる。<br>
+      経営者の想いを組織に浸透させ、<br>
+      チーム全体が発信者になる広報支援。
+    </p>
+    <a href="#contact" class="btn">まずは相談してみる（無料）</a>
+  </div>
+</section>
+
+<!-- ===== PAIN ===== -->
+<section id="pain">
+  <div class="fade">
+    <span class="sec-en">PROBLEM</span>
+    <h2 class="sec-title mincho">こんなお悩み、ありませんか？</h2>
+    <p class="pain-lead">広報がうまくいかない本当の理由は、<br>「発信する言葉がない」のではなく、<br>「社内の言葉が引き出されていない」からです。</p>
+    <div class="pain-list">
+      <div class="pain-item">SNSや広報活動に手が回らず、気づけば何ヶ月も更新が止まっている</div>
+      <div class="pain-item">外注のライターに頼んでいるが、「なんか違う」が続いている</div>
+      <div class="pain-item">社員に発信を任せたいが、自信をもって書ける人がいない</div>
+      <div class="pain-item">自社の強みは分かっているが、言葉にするのが難しい</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PHILOSOPHY ===== -->
+<section id="philosophy">
+  <div class="fade">
+    <span class="sec-en">OUR PHILOSOPHY</span>
+    <h2 class="sec-title mincho">セクレタリアが大切にしていること</h2>
+    <div class="phil-grid">
+      <div class="phil-card">
+        <div class="phil-num">01</div>
+        <h3 class="phil-title mincho">体温のある言葉</h3>
+        <p class="phil-text">テンプレートではなく、その会社にしかない言葉を引き出すことを大切にしています。数字や技術の前に、「なぜやっているのか」を一緒に掘り起こします。</p>
+      </div>
+      <div class="phil-card">
+        <div class="phil-num">02</div>
+        <h3 class="phil-title mincho">いのちのかがやき</h3>
+        <p class="phil-text">人は誰でも、輝ける場所を持っています。経営者も社員も、自分の言葉で語れる場を作ることが、組織を変える最初の一歩だと信じています。</p>
+      </div>
+      <div class="phil-card">
+        <div class="phil-num">03</div>
+        <h3 class="phil-title mincho">自然体で輝ける社会</h3>
+        <p class="phil-text">飾らなくていい。背伸びしなくていい。ありのままの姿が誰かに届く——そんな発信の形を、一緒に見つけます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section id="services">
+  <div class="fade">
+    <span class="sec-en">SERVICES</span>
+    <h2 class="sec-title mincho">サービス</h2>
+    <div class="svc-grid">
+      <div class="svc-card">
+        <span class="svc-num">01</span>
+        <h3 class="svc-title mincho">発信が生まれる<br>組織をつくる研修</h3>
+        <p class="svc-sub">社内発信力 / 理念浸透 / チームビルディング</p>
+        <p class="svc-desc">MC・司会で培った「場を温め、言葉を引き出す力」で独自開発した研修です。社員自身が「なぜうちはこの仕事をしているのか」を語れるチームをつくります。</p>
+        <div class="svc-tags">
+          <span class="tag">経営理念の言語化</span>
+          <span class="tag">社員向け発信研修</span>
+          <span class="tag">チーム発信力診断</span>
+        </div>
+      </div>
+      <div class="svc-card">
+        <span class="svc-num">02</span>
+        <h3 class="svc-title mincho">発信の仕組みをつくる<br>広報支援</h3>
+        <p class="svc-sub">SNS運用 / 広報設計 / 伴走支援</p>
+        <p class="svc-desc">研修で生まれた「社内の言葉」を、SNS・Web・対外コミュニケーションへ展開します。外注に頼らず、自分たちで発信し続けられる土台を一緒につくります。</p>
+        <div class="svc-tags">
+          <span class="tag">発信コンセプト設計</span>
+          <span class="tag">SNS運用伴走</span>
+          <span class="tag">AI・ITツール活用支援</span>
+        </div>
+      </div>
+      <div class="svc-card">
+        <span class="svc-num">03</span>
+        <h3 class="svc-title mincho">式典・イベントの<br>司会・MC</h3>
+        <p class="svc-sub">企業イベント / 式典 / キックオフ</p>
+        <p class="svc-desc">2018年より多数の現場で経験を積んできた実績をもとに、企業イベント・式典・キックオフミーティングなどの司会・進行を承ります。御社の想いを代弁します。</p>
+        <div class="svc-tags">
+          <span class="tag">企業式典</span>
+          <span class="tag">周年記念イベント</span>
+          <span class="tag">キックオフ</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WORKS ===== -->
+<section id="works">
+  <div class="fade">
+    <span class="sec-en">WORKS &amp; MEDIA</span>
+    <h2 class="sec-title mincho">実績・メディア掲載</h2>
+
+    <!-- 奈良新聞 -->
+    <div class="media-block">
+      <div class="media-img">
+        <!--
+          記事画像が用意できたら下の行のコメントを外してください:
+          <img src="nara-shimbun.jpg" alt="奈良新聞 掲載記事">
+          ↑ 画像ファイルをこのHTMLと同じフォルダに置いてください
+        -->
+        <div class="media-ph">
+          <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="10" width="40" height="32" stroke="#C24A30" stroke-width="1.5" fill="none"/>
+            <path d="M6 18h40M14 10v32M38 10v32" stroke="#C24A30" stroke-width="1" stroke-dasharray="3 3"/>
+          </svg>
+          <span>新聞記事の画像<br>（後で差し替え）</span>
+        </div>
+        <div class="media-badge">MEDIA</div>
+      </div>
+      <div>
+        <p class="media-outlet">奈良新聞</p>
+        <h3 class="media-headline mincho">
+          <!-- ↓ 記事の見出しを入れてください -->
+          ◯◯◯◯◯◯◯◯◯◯◯◯◯◯
+        </h3>
+        <p class="media-date">
+          <!-- ↓ 掲載日を入れてください（例: 2025年5月14日 掲載） -->
+          2025年◯月◯日 掲載
+        </p>
+      </div>
+    </div>
+
+    <!-- 実績2列 -->
+    <div class="works-cols">
+      <div>
+        <p class="works-col-label">MC · 司会</p>
+        <!-- ↓ 実際の実績に差し替えてください -->
+        <div class="work-item"><span class="work-year">2024</span><span class="work-desc">◯◯社 創立記念式典 司会（来場者◯◯名）</span></div>
+        <div class="work-item"><span class="work-year">2024</span><span class="work-desc">◯◯業 キックオフミーティング 進行</span></div>
+        <div class="work-item"><span class="work-year">2023</span><span class="work-desc">◯◯社 周年イベント MC</span></div>
+        <div class="work-item"><span class="work-year">2018〜</span><span class="work-desc">各種企業イベント・式典 多数</span></div>
+      </div>
+      <div>
+        <p class="works-col-label">広報支援 · 研修</p>
+        <!-- ↓ 実際の実績に差し替えてください -->
+        <div class="work-item"><span class="work-year">2025</span><span class="work-desc">◯◯業 社内発信力研修（全◯回）</span></div>
+        <div class="work-item"><span class="work-year">2025</span><span class="work-desc">◯◯社 SNS運用伴走支援</span></div>
+        <div class="work-item"><span class="work-year">2025</span><span class="work-desc">◯◯業 広報コンセプト設計</span></div>
+        <div class="work-item"><span class="work-year">2025</span><span class="work-desc">◯◯社 経営理念の言語化ワーク</span></div>
+      </div>
+    </div>
+    <p style="margin-top:28px; font-size:12px; color:#8C8070; letter-spacing:0.06em;">※ 実績の詳細は後で差し替えてください。社名を出せる案件・伏せたい案件を教えていただければ対応します。</p>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="fade">
+    <span class="sec-en">REPRESENTATIVE</span>
+    <h2 class="sec-title mincho">代表について</h2>
+    <div class="about-grid">
+      <div class="about-photo">
+        <!--
+          写真を差し替える場合:
+          <img src="photo.jpg" alt="代表 谷 有子">
+          ↑ 画像ファイルをこのHTMLと同じフォルダに置いてください
+        -->
+        <div class="ph-wrap">
+          <div class="ph-circle">代表</div>
+          <p>写真を<br>差し替えてください</p>
+        </div>
+      </div>
+      <div>
+        <p class="about-role">代表取締役</p>
+        <h2 class="about-name mincho">谷 有子</h2>
+        <p class="about-name-en">Yuko Tani</p>
+        <p class="about-text">2018年よりMC・司会として、企業式典・キックオフ・記念イベントなど数多くの現場に立つ。現場で培った「場を温め、言葉を引き出す力」を活かし、広報支援・社内研修の分野へ。</p>
+        <p class="about-text">「社長の想いがチームに届いていない」「発信したいけど言葉が出てこない」という中小企業の課題に向き合い、令和7年10月、株式会社セクレタリアを設立。</p>
+        <p class="career-label">CAREER</p>
+        <div class="career-item"><span class="career-yr">2018</span><span>MC・司会 活動開始。企業式典・イベントを中心に多数の現場を経験</span></div>
+        <div class="career-item"><span class="career-yr">2025</span><span>株式会社セクレタリア 設立（令和7年10月10日）</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMPANY ===== -->
+<section id="company">
+  <div class="fade">
+    <span class="sec-en">COMPANY</span>
+    <h2 class="sec-title mincho">会社概要</h2>
+    <table>
+      <tr><th>会社名</th><td>株式会社セクレタリア</td></tr>
+      <tr><th>英語表記</th><td>Secretaria Inc.</td></tr>
+      <tr><th>設立</th><td>令和7年10月10日</td></tr>
+      <tr><th>代表取締役</th><td>谷 有子</td></tr>
+      <tr><th>事業内容</th><td>広報支援 / 社内発信力研修 / MC・司会</td></tr>
+      <tr><th>所在地</th><td><!-- 住所を入れてください --></td></tr>
+      <tr><th>URL</th><td>https://www.mc-secretaria.com</td></tr>
+      <tr><th>公告方法</th><td><a href="kokoku.html">電子公告（こちら）</a></td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section id="cta">
+  <div class="fade">
+    <span class="sec-en">FREE CONSULTATION</span>
+    <h2 class="sec-title mincho">まずは、お気軽にご相談ください。</h2>
+    <p>広報のことでも、研修のことでも、MCのことでも。<br>「こんなこと聞いていいのかな」でも大歓迎です。</p>
+    <a href="#contact" class="btn-light">無料相談フォームへ</a>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="fade">
+    <span class="sec-en">CONTACT</span>
+    <h2 class="sec-title mincho">無料相談フォーム</h2>
+    <div class="form-wrap">
+      <p class="form-note">
+        広報支援・研修・MC・司会に関するご相談はこちらから。<br>
+        返信は通常1〜3営業日以内を目安にしております。
+      </p>
+      <!--
+        ★ フォームを動かすにはFormspree（無料）の設定が必要です。
+           1. https://formspree.io/ でアカウントを作成
+           2. 新規フォームを作成 → フォームIDを取得（例: xrgnqpwz）
+           3. 下の action="..." の YOUR_FORM_ID を そのIDに書き換えてください
+      -->
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-group">
+          <label>貴社名</label>
+          <input type="text" name="company" placeholder="株式会社◯◯">
+        </div>
+        <div class="form-group">
+          <label>ご担当者名 <span class="required">*</span></label>
+          <input type="text" name="name" required placeholder="山田 太郎">
+        </div>
+        <div class="form-group">
+          <label>メールアドレス <span class="required">*</span></label>
+          <input type="email" name="email" required placeholder="example@email.com">
+        </div>
+        <div class="form-group">
+          <label>ご相談内容</label>
+          <textarea name="message" placeholder="ご相談内容をご自由にお書きください"></textarea>
+        </div>
+        <button type="submit" class="btn" style="width:100%;">送信する</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Secretaria</div>
+      <p class="footer-tagline">体温のある言葉で、社会をつなぐ</p>
+    </div>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/secretaria_mc" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.facebook.com/yuko.tani" target="_blank" rel="noopener">Facebook</a>
+      <a href="kokoku.html">電子公告</a>
+    </div>
+  </div>
+  <p class="copyright">© 2025 Secretaria Inc. All Rights Reserved.</p>
+</footer>
+
+<script>
+  // スクロール時にフェードイン
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
