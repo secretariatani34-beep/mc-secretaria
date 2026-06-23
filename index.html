@@ -295,6 +295,54 @@
     }
     .media-date { font-size: 13px; color: #6F665A; letter-spacing: 0.12em; }
 
+    /* ===== VIDEO BLOCK ===== */
+    .video-block {
+      background: #FBF7EF;
+      padding: 56px;
+      margin-bottom: 72px;
+    }
+    .video-lead {
+      font-size: 14px;
+      line-height: 2;
+      color: #6F665A;
+      max-width: 680px;
+      margin-bottom: 36px;
+    }
+    .video-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .video-card { margin: 0; }
+    .video-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: #000;
+    }
+    .video-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .video-card figcaption {
+      margin-top: 14px;
+      font-size: 13px;
+      line-height: 1.8;
+      color: #2A2621;
+    }
+    .video-ch {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: #C24A30;
+      margin-bottom: 6px;
+    }
+
     .works-cols {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -493,6 +541,8 @@
       .svc-grid { grid-template-columns: 1fr; gap: 2px; }
       .works-cols { grid-template-columns: 1fr; gap: 40px; }
       .media-block { grid-template-columns: 1fr; padding: 32px 24px; gap: 32px; }
+      .video-block { padding: 32px 24px; }
+      .video-grid { grid-template-columns: 1fr; gap: 28px; }
       .about-grid { grid-template-columns: 1fr; }
       .about-photo { max-width: 260px; aspect-ratio: 1/1; }
       footer { padding: 48px 24px 32px; }
@@ -645,6 +695,33 @@
           人に寄り添うパートナー
         </h3>
         <p class="media-date">令和8年4月3日（2026年4月3日）掲載</p>
+      </div>
+    </div>
+
+    <!-- 奈良西警察署 × 奈良信用金庫 コラボ動画 -->
+    <div class="video-block">
+      <p class="media-outlet">奈良西警察署 × 奈良信用金庫</p>
+      <h3 class="media-headline mincho">特殊詐欺被害防止の啓発動画を制作</h3>
+      <p class="video-lead">官民連携の特殊詐欺被害防止の取り組みとして、啓発動画の企画・制作をサポートしました。奈良県警察公式チャンネルと、奈良信用金庫「ならっきーチャンネル」の両方で公開されています。</p>
+      <div class="video-grid">
+        <figure class="video-card">
+          <div class="video-frame">
+            <iframe src="https://www.youtube.com/embed/r8PtChJuFOo" title="【奈良信用金庫と連携した特殊詐欺被害防止啓発動画】" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <figcaption>
+            <span class="video-ch">奈良県警察公式チャンネル</span>
+            【奈良信用金庫と連携した特殊詐欺被害防止啓発動画】
+          </figcaption>
+        </figure>
+        <figure class="video-card">
+          <div class="video-frame">
+            <iframe src="https://www.youtube.com/embed/l85K_hDhO5U" title="ならっきーとまなぶ！特殊詐欺徹底対策ガイド" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <figcaption>
+            <span class="video-ch">ならしん ならっきーチャンネル</span>
+            ならっきーとまなぶ！特殊詐欺徹底対策ガイド
+          </figcaption>
+        </figure>
       </div>
     </div>
 
