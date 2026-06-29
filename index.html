@@ -343,6 +343,67 @@
       margin-bottom: 6px;
     }
 
+    /* ===== INSTAGRAM CARD ===== */
+    .ig-block {
+      background: #FBF7EF;
+      padding: 56px;
+      margin-bottom: 72px;
+    }
+    .ig-card {
+      display: block;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: 3px;
+      border-radius: 20px;
+      text-decoration: none;
+      background: linear-gradient(45deg, #F58529, #DD2A7B 50%, #8134AF 80%, #515BD4);
+      box-shadow: 0 10px 24px rgba(221, 42, 123, 0.18);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .ig-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 30px rgba(221, 42, 123, 0.28);
+    }
+    .ig-card__inner {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      background: #fff;
+      border-radius: 17px;
+      padding: 24px 28px;
+    }
+    .ig-card__logos {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .ig-card__logos img {
+      width: 64px; height: 64px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+    .ig-card__logos img.logo-mark { border-radius: 0; }
+    .ig-card__body { flex: 1 1 auto; display: flex; flex-direction: column; }
+    .ig-card__name {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 18px; font-weight: 600; line-height: 1.4; color: #2A2621;
+    }
+    .ig-card__handle { font-size: 13px; letter-spacing: .04em; color: #6F665A; }
+    .ig-card__btn {
+      flex: 0 0 auto;
+      font-size: 13px; letter-spacing: .06em;
+      color: #fff;
+      background: linear-gradient(45deg, #F58529, #DD2A7B 50%, #8134AF 80%, #515BD4);
+      border-radius: 999px;
+      padding: 8px 16px;
+      white-space: nowrap;
+    }
+    @media (max-width: 680px) {
+      .ig-card__inner { flex-wrap: wrap; justify-content: center; text-align: center; }
+      .ig-card__body { flex-basis: 100%; align-items: center; }
+    }
+
     .works-cols {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -723,6 +784,26 @@
           </figcaption>
         </figure>
       </div>
+    </div>
+
+    <!-- フレック九条 様 公式Instagram -->
+    <div class="ig-block">
+      <p class="media-outlet">SOCIAL MEDIA</p>
+      <h3 class="media-headline mincho">フレック九条 様 公式Instagram</h3>
+      <p class="video-lead">制作・運用をサポートしているフレック九条様の公式Instagramです。下のカードから最新の投稿をご覧いただけます。</p>
+      <a class="ig-card" href="https://www.instagram.com/fleckkujime/" target="_blank" rel="noopener">
+        <span class="ig-card__inner">
+          <span class="ig-card__logos">
+            <img class="logo-mark" src="fleck-logo-owl.png" alt="フレック九条 キャラクターロゴ">
+            <img class="logo-circle" src="fleck-logo-circle.png" alt="FLECK KUJYO ロゴ">
+          </span>
+          <span class="ig-card__body">
+            <span class="ig-card__name">フレック九条</span>
+            <span class="ig-card__handle">＠fleckkujime</span>
+          </span>
+          <span class="ig-card__btn">投稿を見る →</span>
+        </span>
+      </a>
     </div>
 
     <!-- 実績2列 -->
