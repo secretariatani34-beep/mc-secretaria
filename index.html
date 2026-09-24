@@ -146,7 +146,7 @@
     }
     .hero-media { position: relative; min-height: 100vh; }
     .hero-media .ph, .hero-media img { width: 100%; height: 100%; min-height: 100vh; object-fit: cover; }
-    #hero .ph-img { object-position: 50% 14%; }
+    #hero .ph-img { object-position: 50% 12%; }
     .hero-media-tag {
       position: absolute; left: -22px; bottom: 66px; z-index: 2;
       background: var(--card); color: var(--ink); padding: 9px 18px; border-radius: 999px;
@@ -154,8 +154,8 @@
       font-size: 12.5px; letter-spacing: 0.06em; transform: rotate(-3deg);
     }
     h1 {
-      font-size: clamp(30px, 5vw, 56px); font-weight: 700; color: var(--ink);
-      line-height: 1.42; letter-spacing: 0.02em; margin-bottom: 28px;
+      font-size: clamp(25px, 4vw, 44px); font-weight: 700; color: var(--ink);
+      line-height: 1.5; letter-spacing: 0.01em; margin-bottom: 28px;
     }
     h1 .accent { color: var(--accent); }
     /* 隙: メインコピー下の、手書き風のゆれた下線 */
@@ -201,9 +201,10 @@
     }
     /* 隙: 2番目のカードだけ少し下げて、整いすぎを外す */
     .flow-step:nth-child(2) { transform: translateY(26px); }
-    .flow-ill { margin-bottom: 20px; }
-    .flow-ill svg { width: 84px; height: 84px; display: block; }
-    .flow-no { font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.12em; color: var(--accent); display: block; margin-bottom: 8px; }
+    .flow-no { font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.12em; color: var(--accent); display: block; margin-bottom: 12px; }
+    .flow-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+    .flow-ill { flex: 0 0 auto; }
+    .flow-ill svg { width: 50px; height: 50px; display: block; }
     .flow-num {
       font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; font-size: 15px;
       width: 40px; height: 40px; border-radius: 50%;
@@ -211,14 +212,14 @@
       display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
       transform: rotate(-4deg);
     }
-    .flow-title { font-size: 19px; font-weight: 700; color: var(--ink); margin-bottom: 12px; letter-spacing: 0.03em; }
+    .flow-title { font-size: 19px; font-weight: 700; color: var(--ink); margin-bottom: 0; letter-spacing: 0.03em; }
     .flow-text { font-size: 14px; line-height: 1.95; color: var(--ink-2); }
     .flow-arrow { display: none; }
 
     /* ===== PHOTO BAND（横長ビジュアルの抑揚）===== */
     .photo-band { padding: 0; position: relative; height: 48vh; min-height: 320px; overflow: hidden; }
     .photo-band .ph, .photo-band img { width: 100%; height: 100%; object-fit: cover; }
-    .photo-band::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(35,32,27,0.28), rgba(35,32,27,0) 55%); pointer-events: none; }
+    .photo-band::after { content: none; }
     .band-cap { position: absolute; left: 8%; bottom: 44px; z-index: 2; }
     .band-cap p { display: inline-block; background: rgba(35,32,27,0.55); color: #fff; padding: 12px 22px; border-radius: 999px; font-size: clamp(16px, 2vw, 24px); font-weight: 700; letter-spacing: 0.03em; }
 
@@ -292,7 +293,7 @@
     .ig-card__inner { display: flex; align-items: center; gap: 18px; background: #fff; border-radius: 15px; padding: 20px 24px; width: 100%; }
     .ig-avatar { flex: 0 0 auto; width: 54px; height: 54px; border-radius: 50%; background: var(--accent-wash); display: flex; align-items: center; justify-content: center; }
     .ig-card__body { flex: 1 1 auto; display: flex; flex-direction: column; }
-    .ig-card__name { font-size: 16px; font-weight: 700; line-height: 1.4; color: var(--ink); }
+    .ig-card__name { font-size: 16px; font-weight: 700; line-height: 1.4; color: var(--ink); white-space: nowrap; }
     .ig-card__handle { font-size: 13px; letter-spacing: .03em; color: var(--muted); }
     .ig-card__btn { flex: 0 0 auto; font-size: 12.5px; letter-spacing: .04em; color: #fff; background: linear-gradient(45deg, #F58529, #DD2A7B 50%, #8134AF 80%, #515BD4); border-radius: 999px; padding: 8px 15px; white-space: nowrap; }
 
@@ -362,6 +363,9 @@
     .footer-links a:hover { color: #fff; }
     .copyright { text-align: center; font-size: 11.5px; letter-spacing: 0.06em; padding-top: 28px; border-top: 1px solid rgba(247,242,232,0.12); color: rgba(247,242,232,0.35); }
 
+    /* 日本語の行末で最後の一文字だけが次行に落ちるのを抑制 */
+    .lead, .stance-text, .flow-text, .svc-desc, .about-text, .hero-sub, .video-lead, .form-note, .want-item { text-wrap: pretty; }
+
     /* ===== FADE（動きは小さく静かに）===== */
     .fade { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
     .fade.on { opacity: 1; transform: none; }
@@ -386,8 +390,8 @@
       .hero-left { padding: 104px 22px 36px; }
       .hero-left::before { display: none; }
       .hero-media { min-height: 0; order: -1; }
-      .hero-media .ph, .hero-media img { min-height: 0; height: 54vh; }
-      .hero-media-tag { left: 14px; bottom: 16px; }
+      .hero-media .ph, .hero-media img { min-height: 0; height: 52vh; }
+      #hero .ph-img { object-position: 50% 6%; }
       .ww-top { grid-template-columns: 1fr; gap: 24px; }
       .ww-media .ph, .ww-media img { aspect-ratio: 16/10; }
       .photo-band { height: 40vh; min-height: 240px; }
@@ -398,6 +402,8 @@
       .svc-row:nth-child(even) .svc-media { order: 0; }
       .svc-media .ph, .svc-media img { aspect-ratio: 16/10; }
       .mc-works { grid-template-columns: 1fr; }
+      .ig-card__inner { flex-wrap: wrap; }
+      .ig-card__btn { margin-left: auto; }
       .panel { padding: 26px 22px; }
       .media-block { grid-template-columns: 1fr; gap: 26px; }
       .video-grid { grid-template-columns: 1fr; gap: 22px; }
@@ -462,7 +468,6 @@
       <img class="ph-img" src="hero.jpg" alt="登壇してマイクを持ち、聴衆に語りかける様子" onerror="this.style.display='none'">
       <span>メインビジュアル</span>
     </figure>
-    <span class="hero-media-tag">現場にて。</span>
   </div>
 </section>
 
@@ -483,7 +488,6 @@
           <img class="ph-img" src="ww.jpg" alt="テーブルを囲んで対話する打ち合わせの様子" onerror="this.style.display='none'">
           <span>打ち合わせ・対話</span>
         </figure>
-        <span class="ww-media-tag">まず、聴く。</span>
       </div>
     </div>
     <div class="want-list">
@@ -516,42 +520,48 @@
     </div>
     <div class="flow fade">
       <div class="flow-step">
-        <div class="flow-ill">
-          <svg viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="37" cy="37" r="21" fill="#FAEDE7" stroke="#CF4A32" stroke-width="2.4"/>
-            <line x1="52" y1="52" x2="72" y2="72" stroke="#CF4A32" stroke-width="2.6" stroke-linecap="round"/>
-            <path d="M37 27l2.8 6.8L46.5 37l-6.7 3.2L37 47l-2.8-6.8L27.5 37l6.7-3.2z" fill="#CF4A32"/>
-          </svg>
-        </div>
         <span class="flow-no maru">01</span>
-        <h3 class="flow-title">見つける</h3>
+        <div class="flow-head">
+          <div class="flow-ill">
+            <svg viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="37" cy="37" r="21" fill="#FAEDE7" stroke="#CF4A32" stroke-width="2.4"/>
+              <line x1="52" y1="52" x2="72" y2="72" stroke="#CF4A32" stroke-width="2.6" stroke-linecap="round"/>
+              <path d="M37 27l2.8 6.8L46.5 37l-6.7 3.2L37 47l-2.8-6.8L27.5 37l6.7-3.2z" fill="#CF4A32"/>
+            </svg>
+          </div>
+          <h3 class="flow-title">見つける</h3>
+        </div>
         <p class="flow-text">対話を重ね、人や企業がすでに持っている魅力・経験・強みを掘り起こします。</p>
       </div>
       <div class="flow-step">
-        <div class="flow-ill">
-          <svg viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M14 20h60a7 7 0 017 7v22a7 7 0 01-7 7H41l-15 13V56H14a7 7 0 01-7-7V27a7 7 0 017-7z" fill="#FAEDE7" stroke="#CF4A32" stroke-width="2.4" stroke-linejoin="round"/>
-            <line x1="22" y1="33" x2="62" y2="33" stroke="#CF4A32" stroke-width="2.4" stroke-linecap="round"/>
-            <line x1="22" y1="43" x2="50" y2="43" stroke="#CF4A32" stroke-width="2.4" stroke-linecap="round"/>
-          </svg>
-        </div>
         <span class="flow-no maru">02</span>
-        <h3 class="flow-title">伝わる形にする</h3>
+        <div class="flow-head">
+          <div class="flow-ill">
+            <svg viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14 20h60a7 7 0 017 7v22a7 7 0 01-7 7H41l-15 13V56H14a7 7 0 01-7-7V27a7 7 0 017-7z" fill="#FAEDE7" stroke="#CF4A32" stroke-width="2.4" stroke-linejoin="round"/>
+              <line x1="22" y1="33" x2="62" y2="33" stroke="#CF4A32" stroke-width="2.4" stroke-linecap="round"/>
+              <line x1="22" y1="43" x2="50" y2="43" stroke="#CF4A32" stroke-width="2.4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="flow-title">伝わる形にする</h3>
+        </div>
         <p class="flow-text">言葉、写真、映像、場づくり。その価値に合う方法を選び、相手に届く表現へ整えます。</p>
       </div>
       <div class="flow-step">
-        <div class="flow-ill">
-          <svg viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <line x1="24" y1="28" x2="64" y2="22" stroke="#CF4A32" stroke-width="2.4"/>
-            <line x1="24" y1="28" x2="44" y2="62" stroke="#CF4A32" stroke-width="2.4"/>
-            <line x1="64" y1="22" x2="44" y2="62" stroke="#CF4A32" stroke-width="2.4"/>
-            <circle cx="24" cy="28" r="9" fill="#FAEDE7" stroke="#CF4A32" stroke-width="2.4"/>
-            <circle cx="64" cy="22" r="9" fill="#FAEDE7" stroke="#CF4A32" stroke-width="2.4"/>
-            <circle cx="44" cy="63" r="9" fill="#FAEDE7" stroke="#CF4A32" stroke-width="2.4"/>
-          </svg>
-        </div>
         <span class="flow-no maru">03</span>
-        <h3 class="flow-title">社会とつなぐ</h3>
+        <div class="flow-head">
+          <div class="flow-ill">
+            <svg viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line x1="24" y1="28" x2="64" y2="22" stroke="#CF4A32" stroke-width="2.4"/>
+              <line x1="24" y1="28" x2="44" y2="62" stroke="#CF4A32" stroke-width="2.4"/>
+              <line x1="64" y1="22" x2="44" y2="62" stroke="#CF4A32" stroke-width="2.4"/>
+              <circle cx="24" cy="28" r="9" fill="#FAEDE7" stroke="#CF4A32" stroke-width="2.4"/>
+              <circle cx="64" cy="22" r="9" fill="#FAEDE7" stroke="#CF4A32" stroke-width="2.4"/>
+              <circle cx="44" cy="63" r="9" fill="#FAEDE7" stroke="#CF4A32" stroke-width="2.4"/>
+            </svg>
+          </div>
+          <h3 class="flow-title">社会とつなぐ</h3>
+        </div>
         <p class="flow-text">発信や運営を続けられる形に整え、人・企業・地域のあいだに新しい接点をつくります。</p>
       </div>
     </div>
@@ -564,7 +574,6 @@
     <img class="ph-img" src="band.jpg" alt="式典で登壇し、聴衆の前で話す様子" onerror="this.style.display='none'">
     <span>現場写真</span>
   </figure>
-  <div class="band-cap"><p>その場に立ち、言葉を届ける。</p></div>
 </section>
 
 <!-- ===== SERVICES ===== -->
@@ -599,7 +608,7 @@
           <div class="svc-head"><span class="svc-no maru">03</span><h3 class="svc-name">事務局・プロジェクト運営</h3></div>
           <p class="svc-desc">関係者との調整や情報整理など、活動が滞りなく進むための実務と対話を支えます。</p>
           <div class="svc-tags"><span class="tag">事務局運営</span><span class="tag">進行管理</span><span class="tag">関係者調整</span></div>
-          <p class="svc-work"><span class="svc-work-label">実績</span><span>奈良綺麗プロジェクト</span></p>
+          <p class="svc-work"><span class="svc-work-label">実績</span><a href="https://nara-beauty.jp/" target="_blank" rel="noopener">奈良綺麗プロジェクト</a></p>
         </div>
       </article>
       <article class="svc-row">
@@ -608,7 +617,7 @@
           <div class="svc-head"><span class="svc-no maru">04</span><h3 class="svc-name">研修・組織づくり</h3></div>
           <p class="svc-desc">経営者の想いや組織の価値を、社員一人ひとりが自分の言葉で語れる状態を目指します。</p>
           <div class="svc-tags"><span class="tag">理念の言語化</span><span class="tag">発信研修</span><span class="tag">対話の場づくり</span></div>
-          <p class="svc-work"><span class="svc-work-label">実績</span><span>一般社団法人りょうしん塾「心のスポンジづくり」初級指導者認定</span></p>
+          <p class="svc-work"><span class="svc-work-label">実績</span><a href="https://ryoshinjuku.com/" target="_blank" rel="noopener">一般社団法人りょうしん塾「心のスポンジづくり」初級指導者認定</a></p>
         </div>
       </article>
       <article class="svc-row">
@@ -645,7 +654,7 @@
     <h2 class="stance-title">答えを渡すより、<br>知恵と経験を交換する。</h2>
     <p class="stance-text">
       私たちが大切にしているのは、一方的に答えを渡すことではありません。
-      対話のなかでお互いの知恵や経験を持ち寄り、その人・その会社の力が生きる伝え方とつながりを、一緒に見つけていきます。
+      対話のなかでお互いの知恵や経験を持ち寄り、その人・その会社の力が生きる伝え方とつながりを、一緒に見つけて<span style="white-space:nowrap;">いきます。</span>
     </p>
   </div>
 </section>
@@ -715,7 +724,7 @@
       <a class="ig-card" href="https://www.instagram.com/fleckkujime/" target="_blank" rel="noopener">
         <span class="ig-card__inner">
           <span class="ig-avatar">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="#CF4A32" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="#CF4A32" stroke-width="1.6"/><circle cx="17" cy="7" r="1.2" fill="#CF4A32"/></svg>
+            <img src="hukurou.png" alt="フレック九条 ロゴ" style="width:100%;height:100%;object-fit:contain;">
           </span>
           <span class="ig-card__body">
             <span class="ig-card__name">フレック九条</span>
@@ -727,20 +736,6 @@
     </div>
 
     <!-- 実績2列 -->
-    <div class="panel fade">
-      <p class="works-col-label maru">広報支援・研修</p>
-      <div class="works-cols">
-        <div>
-          <div class="work-item"><span class="work-year maru">—</span><span class="work-desc">スーパーマーケット SNS運用伴走支援</span></div>
-          <div class="work-item"><span class="work-year maru">—</span><span class="work-desc">スーパーマーケット EC販促支援</span></div>
-        </div>
-        <div>
-          <div class="work-item"><span class="work-year maru">—</span><span class="work-desc">ヘアブラシメーカー EC販促支援</span></div>
-          <div class="work-item"><span class="work-year maru">—</span><span class="work-desc">老舗企業 営業コミュニケーション研修</span></div>
-        </div>
-      </div>
-      <p style="font-size:12.5px;color:var(--muted);margin-top:20px;">司会・MCの実績は<a href="#services" style="color:var(--accent);text-decoration:underline;">サービス「司会・MC」</a >をご覧ください。</p>
-    </div>
   </div>
 </section>
 
@@ -748,7 +743,7 @@
 <section id="about">
   <div class="wrap fade">
     <span class="eyebrow maru">REPRESENTATIVE</span>
-    <h2 class="h-sec">代表ごあいさつ</h2>
+    <h2 class="h-sec">代表挨拶</h2>
     <div class="about-grid">
       <div class="about-photo">
         <img src="photo.jpg" alt="代表 谷 優子" onerror="this.style.display='none'; this.parentElement.classList.add('missing');">
