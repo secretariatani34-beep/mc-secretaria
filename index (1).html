@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>株式会社セクレタリア｜広報・映像・研修・司会・事務局運営｜奈良</title>
+  <meta name="description" content="株式会社セクレタリアは、人や企業の価値を見つけ、広報・SNS・映像制作・事務局運営・研修・司会を通じて、伝わる形にし、社会へつなぐ奈良の会社です。まずはお気軽にご相談ください。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    /* =========================================================
+       セクレタリア コーポレートサイト
+       デザイン方針: 凛とした骨格(約85%) + 可愛らしさと隙(約15%)
+       ・ゴシック体主役 / 生成り背景 / 濃色の文字 / くすんだ赤・コーラル
+       ・丸みはボタン・カード角・小さな装飾のみ
+       素材について: photo.jpg / nara-shimbun.jpg / kokoku.html が無くても
+       表示が崩れないようにしています。
+       ========================================================= */
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --paper:   #F7F2E8;  /* 生成り（ベース） */
+      --paper-2: #FCF9F1;  /* 一段明るい面 */
+      --card:    #FFFFFF;
+      --ink:     #23201B;  /* 黒に近い濃色（見出し） */
+      --ink-2:   #46413A;  /* 本文 */
+      --muted:   #8B8377;  /* 補助テキスト */
+      --line:    rgba(35,32,27,0.13);
+      --accent:      #CF4A32;  /* 甘すぎない赤・コーラル（主差し色） */
+      --accent-deep: #A83A24;  /* hover */
+      --accent-soft: #E3A79C;  /* くすんだコーラルピンク（小さな隙） */
+      --accent-wash: #FAEDE7;  /* ごく淡いコーラルの面 */
+      --ph:      #E6DECF;  /* 写真プレースホルダーの面 */
+      --ph-ink:  #A2977F;  /* プレースホルダーの文字 */
+      --radius: 12px;
+    }
+
+    /* 写真プレースホルダー（実写真を入れたら figure の中身を <img> に置換） */
+    .ph {
+      background: var(--ph); position: relative; overflow: hidden;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 10px; color: var(--ph-ink); text-align: center; padding: 24px; margin: 0;
+      box-shadow: inset 0 0 0 1px rgba(35,32,27,0.06);
+    }
+    .ph svg { opacity: 0.7; }
+    .ph span { font-family: 'Zen Maru Gothic', sans-serif; font-size: 12.5px; letter-spacing: 0.08em; line-height: 1.8; }
+    .ph-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink-2);
+      font-family: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+      font-weight: 400;
+      line-height: 1.95;
+      font-size: 16px;
+      letter-spacing: 0.02em;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    .maru { font-family: 'Zen Maru Gothic', 'Zen Kaku Gothic New', sans-serif; }
+
+    /* ===== HEADER ===== */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 20px 44px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(247,242,232,0.9);
+      backdrop-filter: blur(9px);
+      transition: padding .3s ease, border-color .3s ease, background .3s ease;
+      border-bottom: 1px solid transparent;
+    }
+    header.scrolled { padding: 13px 44px; border-bottom-color: var(--line); }
+    .logo {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 21px; font-weight: 700; letter-spacing: 0.06em; color: var(--ink);
+      z-index: 120; display: inline-flex; align-items: center; gap: 8px;
+    }
+    .logo .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); display: inline-block; transform: translateY(1px); }
+    nav { display: flex; gap: 26px; align-items: center; }
+    nav a { font-size: 13px; color: var(--ink-2); letter-spacing: 0.06em; transition: color .2s; }
+    nav a:hover { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent); color: #fff !important;
+      padding: 9px 20px; border-radius: 999px; font-weight: 500;
+      letter-spacing: 0.08em; transition: background .2s, transform .2s;
+    }
+    .nav-cta:hover { background: var(--accent-deep); color: #fff !important; transform: translateY(-1px); }
+
+    .nav-toggle { display: none; position: relative; width: 26px; height: 16px; background: none; border: none; cursor: pointer; padding: 0; z-index: 120; }
+    .nav-toggle span { position: absolute; left: 0; height: 2px; width: 100%; background: var(--ink); border-radius: 2px; transition: transform .3s ease, opacity .3s ease; }
+    .nav-toggle span:nth-child(1) { top: 0; }
+    .nav-toggle span:nth-child(2) { top: 7px; }
+    .nav-toggle span:nth-child(3) { top: 14px; }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav-backdrop { position: fixed; inset: 0; background: rgba(35,32,27,0.3); opacity: 0; visibility: hidden; transition: opacity .35s ease, visibility .35s ease; z-index: 90; }
+    .nav-backdrop.open { opacity: 1; visibility: visible; }
+
+    /* ===== 共通 ===== */
+    section { padding: 104px 44px; }
+    .wrap { max-width: 1080px; margin: 0 auto; }
+    .narrow { max-width: 760px; margin: 0 auto; }
+    .eyebrow {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 12px; font-weight: 500; letter-spacing: 0.18em;
+      color: var(--accent); display: inline-flex; align-items: center; gap: 9px; margin-bottom: 20px;
+    }
+    .eyebrow::before { content: ''; width: 18px; height: 2px; border-radius: 2px; background: var(--accent); }
+    .h-sec {
+      font-size: clamp(23px, 3vw, 34px); font-weight: 700; color: var(--ink);
+      line-height: 1.55; letter-spacing: 0.03em; margin-bottom: 30px;
+    }
+    .lead { font-size: 16px; line-height: 2.05; color: var(--ink-2); }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px; justify-content: center;
+      background: var(--accent); color: #fff;
+      padding: 15px 34px; font-size: 14px; letter-spacing: 0.08em; font-weight: 500;
+      font-family: inherit; border: none; cursor: pointer; border-radius: 999px;
+      transition: background .22s, transform .2s, box-shadow .22s;
+    }
+    .btn:hover { background: var(--accent-deep); transform: translateY(-2px); box-shadow: 0 10px 22px rgba(207,74,50,0.22); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px; justify-content: center;
+      color: var(--ink); padding: 15px 32px; font-size: 14px; letter-spacing: 0.08em; font-weight: 500;
+      border: 1.5px solid var(--line); border-radius: 999px; background: transparent;
+      transition: border-color .22s, color .22s, transform .2s;
+    }
+    .btn-outline:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
+
+    /* ===== HERO ===== */
+    #hero {
+      min-height: 100vh; display: grid; grid-template-columns: 1.02fr 0.98fr;
+      align-items: stretch; padding: 0; position: relative; overflow: hidden;
+    }
+    .hero-left { align-self: center; padding: 124px 6% 84px 8%; position: relative; z-index: 1; }
+    .hero-left::before {
+      content: ''; position: absolute; top: 30px; left: -50px;
+      width: 300px; height: 300px; border-radius: 50%;
+      background: radial-gradient(circle at 40% 40%, rgba(227,167,156,0.26), rgba(227,167,156,0) 70%);
+      pointer-events: none; z-index: -1;
+    }
+    .hero-media { position: relative; min-height: 100vh; }
+    .hero-media .ph, .hero-media img { width: 100%; height: 100%; min-height: 100vh; object-fit: cover; }
+    #hero .ph-img { object-position: 50% 50%; }
+    .hero-media-tag {
+      position: absolute; left: -22px; bottom: 66px; z-index: 2;
+      background: var(--card); color: var(--ink); padding: 9px 18px; border-radius: 999px;
+      box-shadow: 0 10px 24px rgba(35,32,27,0.14); font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 12.5px; letter-spacing: 0.06em; transform: rotate(-3deg);
+    }
+    h1 {
+      font-size: clamp(25px, 4vw, 44px); font-weight: 700; color: var(--ink);
+      line-height: 1.5; letter-spacing: 0.01em; margin-bottom: 28px;
+    }
+    h1 .accent { color: var(--accent); }
+    /* 隙: メインコピー下の、手書き風のゆれた下線 */
+    .underline-wobble { position: relative; display: inline-block; }
+    .underline-wobble::after {
+      content: ''; position: absolute; left: -2px; right: -2px; bottom: -6px; height: 7px;
+      background: no-repeat center/100% 7px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='7' viewBox='0 0 240 7'%3E%3Cpath d='M1 4C40 1.5 80 1.5 120 3.5C160 5.5 200 5.5 239 3' stroke='%23E3A79C' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    }
+    .hero-sub { font-size: 15.5px; line-height: 2.05; color: var(--ink-2); margin-bottom: 40px; max-width: 560px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+    .hero-services {
+      margin-top: 34px; display: flex; flex-wrap: wrap; gap: 8px 10px;
+    }
+    .hero-chip {
+      font-size: 12.5px; letter-spacing: 0.04em; color: var(--ink-2);
+      background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px;
+    }
+
+    /* ===== WHAT WE DO ===== */
+    #whatwedo { background: var(--paper-2); }
+    .ww-top { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; margin-bottom: 46px; }
+    .ww-text .lead { margin-bottom: 0; }
+    .ww-media { position: relative; }
+    .ww-media .ph, .ww-media img { width: 100%; aspect-ratio: 4/3; border-radius: var(--radius); object-fit: cover; }
+    .ww-media-tag { position: absolute; right: 16px; top: -14px; background: var(--accent); color: #fff; font-family: 'Zen Maru Gothic', sans-serif; font-size: 12px; padding: 7px 14px; border-radius: 999px; transform: rotate(2deg); box-shadow: 0 8px 18px rgba(207,74,50,0.22); }
+    .want-list { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; max-width: 780px; }
+    .want-item {
+      background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 20px 22px; font-size: 14.5px; line-height: 1.75; color: var(--ink-2);
+      display: flex; gap: 12px; align-items: flex-start; transition: transform .2s, box-shadow .2s;
+    }
+    .want-item:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(35,32,27,0.06); }
+    .want-item .tick { flex-shrink: 0; width: 20px; height: 20px; margin-top: 2px; }
+
+    /* ===== APPROACH（見つける→伝わる形→社会とつなぐ）===== */
+    #approach { background: var(--paper); }
+    #approach .head { margin-bottom: 56px; }
+    .flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; align-items: start; }
+    .flow-step {
+      background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 34px 30px 32px; position: relative;
+    }
+    /* 隙: 2番目のカードだけ少し下げて、整いすぎを外す */
+    .flow-step:nth-child(2) { transform: translateY(26px); }
+    .flow-no { font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.12em; color: var(--accent); display: block; margin-bottom: 12px; }
+    .flow-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+    .flow-ill { flex: 0 0 auto; }
+    .flow-ill svg { width: 50px; height: 50px; display: block; }
+    .flow-num {
+      font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; font-size: 15px;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--accent-wash); color: var(--accent);
+      display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
+      transform: rotate(-4deg);
+    }
+    .flow-title { font-size: 19px; font-weight: 700; color: var(--ink); margin-bottom: 0; letter-spacing: 0.03em; }
+    .flow-text { font-size: 14px; line-height: 1.95; color: var(--ink-2); }
+    .flow-arrow { display: none; }
+
+    /* ===== PHOTO BAND（横長ビジュアルの抑揚）===== */
+    .photo-band { padding: 0; position: relative; height: 48vh; min-height: 320px; overflow: hidden; }
+    .photo-band .ph, .photo-band img { width: 100%; height: 100%; object-fit: cover; }
+    .photo-band::after { content: none; }
+    .band-cap { position: absolute; left: 8%; bottom: 44px; z-index: 2; }
+    .band-cap p { display: inline-block; background: rgba(35,32,27,0.55); color: #fff; padding: 12px 22px; border-radius: 999px; font-size: clamp(16px, 2vw, 24px); font-weight: 700; letter-spacing: 0.03em; }
+
+    /* ===== SERVICES ===== */
+    #services { background: var(--paper-2); }
+    #services .head { margin-bottom: 48px; }
+    .svc-list { display: flex; flex-direction: column; gap: 22px; }
+    .svc-row {
+      background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 22px; display: grid; grid-template-columns: 300px 1fr; gap: 34px; align-items: center;
+      transition: transform .2s, box-shadow .2s, border-color .2s; overflow: hidden;
+    }
+    .svc-row:hover { border-color: var(--accent-soft); box-shadow: 0 12px 26px rgba(35,32,27,0.07); }
+    .svc-row:nth-child(even) { grid-template-columns: 1fr 300px; }
+    .svc-row:nth-child(even) .svc-media { order: 2; }
+    .svc-media { border-radius: 10px; overflow: hidden; }
+    .svc-media .ph { border-radius: 10px; }
+    .svc-media .ph, .svc-media img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+    .svc-head { display: flex; flex-direction: row; align-items: baseline; gap: 12px; margin-bottom: 10px; }
+    .svc-no { font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.12em; color: var(--accent); }
+    .svc-name { font-size: 19px; font-weight: 700; color: var(--ink); line-height: 1.5; letter-spacing: 0.02em; }
+    .svc-body .svc-desc { font-size: 14px; line-height: 1.95; color: var(--ink-2); margin-bottom: 14px; }
+    .svc-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 16px; }
+    .svc-work { font-size: 13px; color: var(--ink-2); display: flex; flex-wrap: wrap; gap: 5px 12px; align-items: baseline; padding-top: 14px; border-top: 1px dashed var(--line); }
+    .svc-work-label { font-family: 'Zen Maru Gothic', sans-serif; font-size: 11.5px; letter-spacing: 0.1em; color: var(--accent); flex: 0 0 auto; }
+    .svc-work a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+    .svc-work-list { padding-top: 14px; border-top: 1px dashed var(--line); }
+    .svc-work-list .svc-work-label { display: block; margin-bottom: 12px; }
+    .mc-works { display: grid; grid-template-columns: 1fr 1fr; gap: 0 26px; }
+    .mc-works li { list-style: none; font-size: 12.5px; line-height: 1.6; color: var(--ink-2); padding: 8px 0; border-bottom: 1px solid var(--line); }
+    .mc-works li a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+    .tag { font-size: 11px; letter-spacing: 0.04em; padding: 4px 11px; border-radius: 999px; background: var(--paper); color: var(--muted); }
+
+    /* ===== STANCE（姿勢：交換）===== */
+    #stance { background: var(--accent-wash); }
+    .stance-inner { max-width: 780px; margin: 0 auto; text-align: center; }
+    .stance-inner .eyebrow { color: var(--accent); justify-content: center; }
+    .stance-title { font-size: clamp(21px, 2.8vw, 30px); font-weight: 700; color: var(--ink); line-height: 1.6; margin-bottom: 24px; letter-spacing: 0.03em; }
+    .stance-text { font-size: 15px; line-height: 2.15; color: var(--ink-2); max-width: 640px; margin: 0 auto; }
+
+    /* ===== WORKS ===== */
+    #works { background: var(--paper); }
+    #works .head { margin-bottom: 48px; }
+    .panel { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 40px; margin-bottom: 28px; }
+    .media-block { display: grid; grid-template-columns: 5fr 6fr; gap: 44px; align-items: center; }
+    .media-img { background: var(--paper); border-radius: 8px; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .media-img img { width: 100%; height: 100%; object-fit: cover; }
+    .media-ph { text-align: center; color: var(--muted); padding: 20px; }
+    .media-ph svg { margin: 0 auto 10px; }
+    .media-ph span { font-size: 12px; letter-spacing: 0.08em; }
+    .media-badge { position: absolute; top: 12px; left: 12px; background: var(--accent); color: #fff; font-size: 10px; letter-spacing: 0.14em; padding: 4px 11px; border-radius: 999px; }
+    .media-outlet { font-family: 'Zen Maru Gothic', sans-serif; font-size: 12px; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 14px; display: inline-flex; align-items: center; gap: 10px; }
+    .media-outlet::before { content: ''; width: 16px; height: 2px; border-radius: 2px; background: var(--accent); }
+    .media-headline { font-size: clamp(18px, 2vw, 23px); font-weight: 700; color: var(--ink); line-height: 1.55; margin-bottom: 14px; letter-spacing: 0.02em; }
+    .media-date { font-size: 13px; color: var(--muted); letter-spacing: 0.08em; }
+
+    .video-lead { font-size: 14px; line-height: 1.95; color: var(--ink-2); max-width: 700px; margin-bottom: 30px; }
+    .video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+    .video-card { margin: 0; }
+    .video-frame { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #000; border-radius: 8px; }
+    .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .video-card figcaption { margin-top: 13px; font-size: 13px; line-height: 1.75; color: var(--ink-2); }
+    .video-ch { display: block; font-family: 'Zen Maru Gothic', sans-serif; font-size: 11px; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 5px; }
+
+    .ig-card {
+      display: inline-flex; max-width: 520px; margin: 0; padding: 3px; border-radius: 18px; text-decoration: none;
+      background: linear-gradient(45deg, #F58529, #DD2A7B 50%, #8134AF 80%, #515BD4);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .ig-card:hover { transform: translateY(-3px); box-shadow: 0 12px 26px rgba(221,42,123,0.2); }
+    .ig-card__inner { display: flex; align-items: center; gap: 18px; background: #fff; border-radius: 15px; padding: 20px 24px; width: 100%; }
+    .ig-avatar { flex: 0 0 auto; width: 54px; height: 54px; border-radius: 50%; background: var(--accent-wash); display: flex; align-items: center; justify-content: center; }
+    .ig-card__body { flex: 1 1 auto; display: flex; flex-direction: column; }
+    .ig-card__name { font-size: 16px; font-weight: 700; line-height: 1.4; color: var(--ink); white-space: nowrap; }
+    .ig-card__handle { font-size: 13px; letter-spacing: .03em; color: var(--muted); }
+    .ig-card__btn { flex: 0 0 auto; font-size: 12.5px; letter-spacing: .04em; color: #fff; background: linear-gradient(45deg, #F58529, #DD2A7B 50%, #8134AF 80%, #515BD4); border-radius: 999px; padding: 8px 15px; white-space: nowrap; }
+
+    .works-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; }
+    .works-col-label { font-family: 'Zen Maru Gothic', sans-serif; font-size: 12px; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 20px; display: flex; align-items: center; gap: 11px; }
+    .works-col-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+    .work-item { padding: 15px 0; border-bottom: 1px solid var(--line); display: flex; gap: 18px; align-items: baseline; }
+    .work-year { font-family: 'Zen Maru Gothic', sans-serif; font-size: 12px; color: var(--accent); letter-spacing: 0.04em; min-width: 42px; }
+    .work-desc { font-size: 13px; line-height: 1.8; color: var(--ink-2); }
+    .work-desc a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+
+    /* ===== ABOUT ===== */
+    #about { background: var(--paper-2); }
+    .about-grid { display: grid; grid-template-columns: 330px 1fr; gap: 64px; align-items: start; }
+    .about-photo { background: var(--paper); border-radius: var(--radius); aspect-ratio: 3/4; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .about-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .about-photo.missing::after { content: '代表写真'; font-family: 'Zen Maru Gothic', sans-serif; font-size: 12px; letter-spacing: 0.1em; color: var(--muted); }
+    .about-role { font-size: 12px; letter-spacing: 0.16em; color: var(--muted); margin-bottom: 6px; }
+    .about-name { font-size: 28px; font-weight: 700; color: var(--ink); margin-bottom: 3px; letter-spacing: 0.04em; }
+    .about-name-en { font-family: 'Zen Maru Gothic', sans-serif; font-size: 14px; color: var(--muted); letter-spacing: 0.08em; margin-bottom: 30px; }
+    .about-text { font-size: 15px; line-height: 2.15; color: var(--ink-2); margin-bottom: 22px; }
+    .career-label { font-family: 'Zen Maru Gothic', sans-serif; font-size: 12px; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 14px; padding-top: 26px; border-top: 1px solid var(--line); }
+    .career-item { display: flex; gap: 18px; padding: 9px 0; font-size: 13.5px; border-bottom: 1px solid var(--line); }
+    .career-yr { font-family: 'Zen Maru Gothic', sans-serif; color: var(--muted); min-width: 44px; }
+
+    /* ===== COMPANY ===== */
+    #company { background: var(--paper); }
+    #company table { width: 100%; max-width: 720px; border-collapse: collapse; }
+    #company tr { border-bottom: 1px solid var(--line); }
+    #company th, #company td { padding: 18px 0; font-size: 14px; text-align: left; vertical-align: top; line-height: 1.8; }
+    #company th { width: 150px; font-weight: 500; color: var(--muted); font-size: 13px; letter-spacing: 0.06em; }
+    #company a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+
+    /* ===== CTA ===== */
+    #cta { background: var(--accent); color: #fff; text-align: center; }
+    #cta .eyebrow { color: rgba(255,255,255,0.85); justify-content: center; }
+    #cta .eyebrow::before { background: rgba(255,255,255,0.7); }
+    #cta .h-sec { color: #fff; margin-bottom: 16px; }
+    #cta p { font-size: 15px; opacity: 0.92; margin: 0 auto 40px; max-width: 480px; line-height: 2; }
+    .btn-light { display: inline-flex; align-items: center; gap: 8px; background: #fff; color: var(--accent); padding: 16px 42px; font-size: 14px; letter-spacing: 0.08em; font-weight: 700; border-radius: 999px; transition: transform .2s, box-shadow .2s; }
+    .btn-light:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(0,0,0,0.16); }
+
+    /* ===== CONTACT ===== */
+    #contact { background: var(--paper-2); }
+    .form-wrap { max-width: 600px; }
+    .form-note { font-size: 13.5px; color: var(--muted); line-height: 1.95; margin-bottom: 34px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 12.5px; letter-spacing: 0.06em; color: var(--ink-2); margin-bottom: 7px; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 13px 15px; background: var(--card);
+      border: 1px solid var(--line); color: var(--ink);
+      font-family: inherit; font-size: 15px; line-height: 1.7; outline: none;
+      transition: border-color .2s; border-radius: 8px; -webkit-appearance: none;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent); }
+    .form-group textarea { min-height: 128px; resize: vertical; }
+    .required { color: var(--accent); }
+
+    /* ===== FOOTER ===== */
+    footer { background: var(--ink); color: rgba(247,242,232,0.6); padding: 54px 44px 36px; }
+    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 42px; flex-wrap: wrap; gap: 30px; }
+    .footer-logo { font-family: 'Zen Maru Gothic', sans-serif; font-size: 20px; font-weight: 700; color: #fff; letter-spacing: 0.06em; margin-bottom: 8px; display: inline-flex; align-items: center; gap: 7px; }
+    .footer-logo .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-soft); }
+    .footer-tagline { font-size: 12.5px; letter-spacing: 0.08em; color: rgba(247,242,232,0.55); }
+    .footer-links { display: flex; flex-direction: column; gap: 11px; align-items: flex-end; }
+    .footer-links a { font-size: 12.5px; letter-spacing: 0.08em; color: rgba(247,242,232,0.55); transition: color .2s; }
+    .footer-links a:hover { color: #fff; }
+    .copyright { text-align: center; font-size: 11.5px; letter-spacing: 0.06em; padding-top: 28px; border-top: 1px solid rgba(247,242,232,0.12); color: rgba(247,242,232,0.35); }
+
+    /* 日本語の行末で最後の一文字だけが次行に落ちるのを抑制 */
+    .lead, .stance-text, .flow-text, .svc-desc, .about-text, .hero-sub, .video-lead, .form-note, .want-item { text-wrap: pretty; }
+
+    /* ===== FADE（動きは小さく静かに）===== */
+    .fade { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
+    .fade.on { opacity: 1; transform: none; }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 880px) {
+      header { padding: 15px 22px; }
+      header.scrolled { padding: 12px 22px; }
+      .nav-toggle { display: block; }
+      nav {
+        position: fixed; top: 0; right: 0; height: 100vh; width: min(80vw, 310px);
+        background: var(--paper); flex-direction: column; align-items: flex-start; justify-content: center;
+        gap: 24px; padding: 40px; transform: translateX(100%); transition: transform .35s ease;
+        box-shadow: -16px 0 44px rgba(35,32,27,0.14); z-index: 110;
+      }
+      nav.open { transform: translateX(0); }
+      nav a { font-size: 15.5px; }
+      .nav-cta { padding: 11px 24px; }
+
+      section { padding: 74px 22px; }
+      #hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 104px 22px 36px; }
+      .hero-left::before { display: none; }
+      .hero-media { min-height: 0; order: -1; }
+      .hero-media .ph, .hero-media img { min-height: 0; height: 52vh; }
+      #hero .ph-img { object-position: 50% 50%; }
+      .ww-top { grid-template-columns: 1fr; gap: 24px; }
+      .ww-media .ph, .ww-media img { aspect-ratio: 16/10; }
+      .photo-band { height: 40vh; min-height: 240px; }
+      .want-list { grid-template-columns: 1fr; }
+      .flow { grid-template-columns: 1fr; gap: 16px; }
+      .flow-step:nth-child(2) { transform: none; }
+      .svc-row, .svc-row:nth-child(even) { grid-template-columns: 1fr; gap: 18px; padding: 18px; }
+      .svc-row:nth-child(even) .svc-media { order: 0; }
+      .svc-media .ph, .svc-media img { aspect-ratio: 16/10; }
+      .mc-works { grid-template-columns: 1fr; }
+      .ig-card__inner { flex-wrap: wrap; }
+      .ig-card__btn { margin-left: auto; }
+      .panel { padding: 26px 22px; }
+      .media-block { grid-template-columns: 1fr; gap: 26px; }
+      .video-grid { grid-template-columns: 1fr; gap: 22px; }
+      .works-cols { grid-template-columns: 1fr; gap: 34px; }
+      .about-grid { grid-template-columns: 1fr; gap: 30px; }
+      .about-photo { max-width: 260px; }
+      footer { padding: 46px 22px 30px; }
+      .footer-top { flex-direction: column; }
+      .footer-links { align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .hero-actions .btn, .hero-actions .btn-outline { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header id="siteHeader">
+  <div class="logo">Secretaria<span class="dot"></span></div>
+  <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="navMenu">
+    <span></span><span></span><span></span>
+  </button>
+  <nav id="navMenu">
+    <a href="#whatwedo">私たちについて</a>
+    <a href="#services">サービス</a>
+    <a href="#works">実績</a>
+    <a href="#about">代表</a>
+    <a href="#company">会社概要</a>
+    <a href="#contact" class="nav-cta">相談する</a>
+  </nav>
+</header>
+<div class="nav-backdrop" id="navBackdrop"></div>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-left fade">
+    <h1>
+      その価値を、<span class="underline-wobble">伝わる形</span>に。<br>
+      <span class="accent">社会とのつながり</span>に。
+    </h1>
+    <p class="hero-sub">
+      セクレタリアは、人や企業がすでに持っている価値を見つけ、
+      広報・SNS・映像・研修・司会・事務局運営を通じて、
+      「伝わる形」にし、社会へつなぐ会社です。
+    </p>
+    <div class="hero-actions">
+      <a href="#services" class="btn">サービスを見る</a>
+      <a href="#contact" class="btn-outline">まずは相談する</a>
+    </div>
+    <div class="hero-services">
+      <span class="hero-chip">広報・SNS支援</span>
+      <span class="hero-chip">映像・コンテンツ制作</span>
+      <span class="hero-chip">研修・組織づくり</span>
+      <span class="hero-chip">司会・MC</span>
+      <span class="hero-chip">事務局・運営</span>
+    </div>
+  </div>
+  <div class="hero-media fade">
+    <figure class="ph">
+      <img class="ph-img" src="hero.jpg" alt="芝生に人の想いを表す光が集まり、ステージ・撮影・展示を通じて価値を伝える屋外の場" onerror="this.style.display='none'">
+      <span>メインビジュアル</span>
+    </figure>
+  </div>
+</section>
+
+<!-- ===== WHAT WE DO ===== -->
+<section id="whatwedo">
+  <div class="wrap fade">
+    <div class="ww-top">
+      <div class="ww-text">
+        <span class="eyebrow maru">WHAT WE DO</span>
+        <h2 class="h-sec">価値を見つけ、伝わる形にし、社会へつなぐ。</h2>
+        <p class="lead">
+          よい商品や活動、積み重ねてきた経験があっても、その価値が相手に届かなければ、次の出会いは生まれません。
+          セクレタリアは、まだ言葉になっていない魅力を見つけ、伝え方と動かし方を、となりで一緒につくります。
+        </p>
+      </div>
+      <div class="ww-media">
+        <figure class="ph">
+          <img class="ph-img" src="ww.jpg" alt="テーブルを囲んで対話する打ち合わせの様子" onerror="this.style.display='none'">
+          <span>打ち合わせ・対話</span>
+        </figure>
+      </div>
+    </div>
+    <div class="want-list">
+      <div class="want-item">
+        <svg class="tick" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#FAEDE7"/><path d="M6 10.2l2.6 2.6L14 7.4" stroke="#CF4A32" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        自社の魅力や強みを整理し、伝わる言葉にしたい
+      </div>
+      <div class="want-item">
+        <svg class="tick" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#FAEDE7"/><path d="M6 10.2l2.6 2.6L14 7.4" stroke="#CF4A32" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        SNSや広報を、続けられる仕組みにしたい
+      </div>
+      <div class="want-item">
+        <svg class="tick" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#FAEDE7"/><path d="M6 10.2l2.6 2.6L14 7.4" stroke="#CF4A32" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        映像やイベントで、想いをもっと広く届けたい
+      </div>
+      <div class="want-item">
+        <svg class="tick" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#FAEDE7"/><path d="M6 10.2l2.6 2.6L14 7.4" stroke="#CF4A32" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        活動を支える事務局や、組織を育てる研修を相談したい
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== APPROACH ===== -->
+<section id="approach">
+  <div class="wrap">
+    <div class="head fade">
+      <span class="eyebrow maru">OUR APPROACH</span>
+      <h2 class="h-sec">価値が届くまでを、ひとつながりで。</h2>
+    </div>
+    <div class="flow fade">
+      <div class="flow-step">
+        <span class="flow-no maru">01</span>
+        <div class="flow-head">
+          <div class="flow-ill">
+            <svg viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="37" cy="37" r="21" fill="#FAEDE7" stroke="#CF4A32" stroke-width="2.4"/>
+              <line x1="52" y1="52" x2="72" y2="72" stroke="#CF4A32" stroke-width="2.6" stroke-linecap="round"/>
+              <path d="M37 27l2.8 6.8L46.5 37l-6.7 3.2L37 47l-2.8-6.8L27.5 37l6.7-3.2z" fill="#CF4A32"/>
+            </svg>
+          </div>
+          <h3 class="flow-title">見つける</h3>
+        </div>
+        <p class="flow-text">対話を重ね、人や企業がすでに持っている魅力・経験・強みを掘り起こします。</p>
+      </div>
+      <div class="flow-step">
+        <span class="flow-no maru">02</span>
+        <div class="flow-head">
+          <div class="flow-ill">
+            <svg viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14 20h60a7 7 0 017 7v22a7 7 0 01-7 7H41l-15 13V56H14a7 7 0 01-7-7V27a7 7 0 017-7z" fill="#FAEDE7" stroke="#CF4A32" stroke-width="2.4" stroke-linejoin="round"/>
+              <line x1="22" y1="33" x2="62" y2="33" stroke="#CF4A32" stroke-width="2.4" stroke-linecap="round"/>
+              <line x1="22" y1="43" x2="50" y2="43" stroke="#CF4A32" stroke-width="2.4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="flow-title">伝わる形にする</h3>
+        </div>
+        <p class="flow-text">言葉、写真、映像、場づくり。その価値に合う方法を選び、相手に届く表現へ整えます。</p>
+      </div>
+      <div class="flow-step">
+        <span class="flow-no maru">03</span>
+        <div class="flow-head">
+          <div class="flow-ill">
+            <svg viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line x1="24" y1="28" x2="64" y2="22" stroke="#CF4A32" stroke-width="2.4"/>
+              <line x1="24" y1="28" x2="44" y2="62" stroke="#CF4A32" stroke-width="2.4"/>
+              <line x1="64" y1="22" x2="44" y2="62" stroke="#CF4A32" stroke-width="2.4"/>
+              <circle cx="24" cy="28" r="9" fill="#FAEDE7" stroke="#CF4A32" stroke-width="2.4"/>
+              <circle cx="64" cy="22" r="9" fill="#FAEDE7" stroke="#CF4A32" stroke-width="2.4"/>
+              <circle cx="44" cy="63" r="9" fill="#FAEDE7" stroke="#CF4A32" stroke-width="2.4"/>
+            </svg>
+          </div>
+          <h3 class="flow-title">社会とつなぐ</h3>
+        </div>
+        <p class="flow-text">発信や運営を続けられる形に整え、人・企業・地域のあいだに新しい接点をつくります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PHOTO BAND ===== -->
+<section class="photo-band fade">
+  <figure class="ph">
+    <img class="ph-img" src="band.jpg" alt="式典で登壇し、聴衆の前で話す様子" onerror="this.style.display='none'">
+    <span>現場写真</span>
+  </figure>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section id="services">
+  <div class="wrap">
+    <div class="head fade">
+      <span class="eyebrow maru">SERVICES</span>
+      <h2 class="h-sec">伝えることから、活動を支えることまで。</h2>
+    </div>
+    <div class="svc-list fade">
+      <article class="svc-row">
+        <div class="svc-media"><figure class="ph"><img class="ph-img" src="svc-pr.jpg" alt="ノートPCを一緒に見て発信を検討する様子" onerror="this.style.display='none'"><span>広報・SNS</span></figure></div>
+        <div class="svc-body">
+          <div class="svc-head"><span class="svc-no maru">01</span><h3 class="svc-name">広報・SNS支援</h3></div>
+          <p class="svc-desc">発信する内容と相手を整理し、その会社らしい言葉が続けて届く広報活動を支援します。</p>
+          <div class="svc-tags"><span class="tag">広報設計</span><span class="tag">SNS運用</span><span class="tag">販促支援</span></div>
+          <p class="svc-work"><span class="svc-work-label">実績</span><a href="https://www.instagram.com/fleckkujime/" target="_blank" rel="noopener">フレック九条 様 公式Instagram（制作・運用サポート）</a></p>
+        </div>
+      </article>
+      <article class="svc-row">
+        <div class="svc-media"><figure class="ph"><img class="ph-img" src="svc-movie.jpg" alt="撮影・収録の現場の様子" onerror="this.style.display='none'"><span>映像制作</span></figure></div>
+        <div class="svc-body">
+          <div class="svc-head"><span class="svc-no maru">02</span><h3 class="svc-name">映像・コンテンツ制作</h3></div>
+          <p class="svc-desc">伝えたい想いや情報を整理し、見る人に届く映像や発信コンテンツへ仕立てます。</p>
+          <div class="svc-tags"><span class="tag">企画</span><span class="tag">映像制作</span><span class="tag">啓発コンテンツ</span></div>
+          <p class="svc-work"><span class="svc-work-label">実績</span><a href="#work-video">奈良西警察署 × 奈良信用金庫 特殊詐欺被害防止 啓発動画</a></p>
+        </div>
+      </article>
+      <article class="svc-row">
+        <div class="svc-media"><figure class="ph"><img class="ph-img" src="svc-office.jpg" alt="予定を確認しながら運営を進める打ち合わせ" onerror="this.style.display='none'"><span>事務局・運営</span></figure></div>
+        <div class="svc-body">
+          <div class="svc-head"><span class="svc-no maru">03</span><h3 class="svc-name">事務局・プロジェクト運営</h3></div>
+          <p class="svc-desc">関係者との調整や情報整理など、活動が滞りなく進むための実務と対話を支えます。</p>
+          <div class="svc-tags"><span class="tag">事務局運営</span><span class="tag">進行管理</span><span class="tag">関係者調整</span></div>
+          <p class="svc-work"><span class="svc-work-label">実績</span><a href="https://nara-beauty.jp/" target="_blank" rel="noopener">奈良綺麗プロジェクト</a></p>
+        </div>
+      </article>
+      <article class="svc-row">
+        <div class="svc-media"><figure class="ph"><img class="ph-img" src="svc-training.jpg" alt="人前で話し、伝える研修の様子" onerror="this.style.display='none'"><span>研修</span></figure></div>
+        <div class="svc-body">
+          <div class="svc-head"><span class="svc-no maru">04</span><h3 class="svc-name">研修・組織づくり</h3></div>
+          <p class="svc-desc">経営者の想いや組織の価値を、社員一人ひとりが自分の言葉で語れる状態を目指します。</p>
+          <div class="svc-tags"><span class="tag">理念の言語化</span><span class="tag">発信研修</span><span class="tag">対話の場づくり</span></div>
+          <p class="svc-work"><span class="svc-work-label">実績</span><a href="https://ryoshinjuku.com/" target="_blank" rel="noopener">一般社団法人りょうしん塾「心のスポンジづくり」初級指導者認定</a></p>
+        </div>
+      </article>
+      <article class="svc-row">
+        <div class="svc-media"><figure class="ph"><img class="ph-img" src="band.jpg" alt="式典で司会・進行をする様子" onerror="this.style.display='none'"><span>司会・MC</span></figure></div>
+        <div class="svc-body">
+          <div class="svc-head"><span class="svc-no maru">05</span><h3 class="svc-name">司会・MC</h3></div>
+          <p class="svc-desc">企業イベントや式典の目的と想いをくみ取り、会場と登壇者をつなぐ進行を行います。</p>
+          <div class="svc-tags"><span class="tag">企業式典</span><span class="tag">周年イベント</span><span class="tag">キックオフ</span></div>
+          <div class="svc-work-list">
+            <span class="svc-work-label">主な実績</span>
+            <ul class="mc-works">
+              <li><a href="https://www.youtube.com/@daimatsu_workwear" target="_blank" rel="noopener">作業服のだいまつ YouTubeチャンネル</a></li>
+              <li>WBO世界スーパーフェザー級チャンピオン 初防衛祝勝会</li>
+              <li>こどもミュージアムフェスタ（2019・2022・2023）</li>
+              <li>株式会社コンサス 設立30周年記念式典</li>
+              <li>宮城県石巻 NPO法人やっぺす 活動報告会</li>
+              <li>吹田市・豊中市消防音楽隊合同演奏会 火災予防フェスティバル</li>
+              <li>東京ビッグサイト ヘルス＆ビューティショー（株式会社エミット 展示ブース）</li>
+              <li>吹田市防火連合会 防災講演会</li>
+              <li>セメダイン西日本 賀詞交換会</li>
+              <li>第50回ジャンボびっくり見本市 だいまつ展示ブース</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STANCE（仕事の姿勢）===== -->
+<section id="stance">
+  <div class="stance-inner fade">
+    <span class="eyebrow maru">OUR STANCE</span>
+    <h2 class="stance-title">答えを渡すより、<br>知恵と経験を交換する。</h2>
+    <p class="stance-text">
+      私たちが大切にしているのは、一方的に答えを渡すことではありません。
+      対話のなかでお互いの知恵や経験を持ち寄り、その人・その会社の力が生きる伝え方とつながりを、一緒に見つけて<span style="white-space:nowrap;">いきます。</span>
+    </p>
+  </div>
+</section>
+
+<!-- ===== WORKS ===== -->
+<section id="works">
+  <div class="wrap">
+    <div class="head fade">
+      <span class="eyebrow maru">WORKS &amp; MEDIA</span>
+      <h2 class="h-sec">実績・メディア掲載</h2>
+    </div>
+
+    <!-- 奈良新聞 -->
+    <div class="panel fade">
+      <div class="media-block">
+        <div class="media-img">
+          <img src="nara-shimbun.jpg" alt="奈良新聞 掲載記事 2026年4月3日" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div class="media-ph" style="display:none;">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="6" y="10" width="40" height="32" rx="2" stroke="#CF4A32" stroke-width="1.5" fill="none"/>
+              <path d="M6 18h40M14 10v32M38 10v32" stroke="#CF4A32" stroke-width="1" stroke-dasharray="3 3"/>
+            </svg>
+            <span>新聞記事の画像</span>
+          </div>
+          <div class="media-badge">MEDIA</div>
+        </div>
+        <div>
+          <p class="media-outlet maru">奈良新聞</p>
+          <h3 class="media-headline">人に寄り添うパートナー</h3>
+          <p class="media-date">令和8年4月3日（2026年4月3日）掲載</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 奈良西警察署 × 奈良信用金庫 コラボ動画 -->
+    <div class="panel fade" id="work-video">
+      <p class="media-outlet maru">奈良西警察署 × 奈良信用金庫</p>
+      <h3 class="media-headline">特殊詐欺被害防止の啓発動画を制作</h3>
+      <p class="video-lead">官民連携の特殊詐欺被害防止の取り組みとして、啓発動画の企画・制作をサポートしました。奈良県警察公式チャンネルと、奈良信用金庫「ならっきーチャンネル」の両方で公開されています。</p>
+      <div class="video-grid">
+        <figure class="video-card">
+          <div class="video-frame">
+            <iframe src="https://www.youtube.com/embed/r8PtChJuFOo" title="奈良信用金庫と連携した特殊詐欺被害防止啓発動画" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <figcaption>
+            <span class="video-ch maru">奈良県警察公式チャンネル</span>
+            奈良信用金庫と連携した特殊詐欺被害防止啓発動画
+          </figcaption>
+        </figure>
+        <figure class="video-card">
+          <div class="video-frame">
+            <iframe src="https://www.youtube.com/embed/l85K_hDhO5U" title="ならっきーとまなぶ！特殊詐欺徹底対策ガイド" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <figcaption>
+            <span class="video-ch maru">ならしん ならっきーチャンネル</span>
+            ならっきーとまなぶ！特殊詐欺徹底対策ガイド
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- フレック九条 様 公式Instagram -->
+    <div class="panel fade">
+      <p class="media-outlet maru">SOCIAL MEDIA</p>
+      <h3 class="media-headline">フレック九条 様 公式Instagram</h3>
+      <p class="video-lead">制作・運用をサポートしているフレック九条様の公式Instagramです。下のカードから最新の投稿をご覧いただけます。</p>
+      <a class="ig-card" href="https://www.instagram.com/fleckkujime/" target="_blank" rel="noopener">
+        <span class="ig-card__inner">
+          <span class="ig-avatar">
+            <img src="hukurou.png" alt="フレック九条 ロゴ" style="width:100%;height:100%;object-fit:contain;">
+          </span>
+          <span class="ig-card__body">
+            <span class="ig-card__name">フレック九条</span>
+            <span class="ig-card__handle">＠fleckkujime</span>
+          </span>
+          <span class="ig-card__btn">投稿を見る →</span>
+        </span>
+      </a>
+    </div>
+
+    <!-- 実績2列 -->
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="wrap fade">
+    <span class="eyebrow maru">REPRESENTATIVE</span>
+    <h2 class="h-sec">代表挨拶</h2>
+    <div class="about-grid">
+      <div class="about-photo">
+        <img src="photo.jpg" alt="代表 谷 優子" onerror="this.style.display='none'; this.parentElement.classList.add('missing');">
+      </div>
+      <div>
+        <p class="about-role">代表取締役</p>
+        <h2 class="about-name">谷 優子</h2>
+        <p class="about-name-en maru">Yuko Tani</p>
+        <p class="about-text">もともと、話すことが得意ではありませんでした。親戚の集まりでも隅に隠れているような子どもで、学校やアルバイトで表面上は話せても、苦手意識は抜けないまま。大学生のころに心を病み、一時は学校へ通えなくなりました。仮面浪人で環境を変え、少しずつ回復するなかで、「それでも、うまく伝えられるようになりたい」という一心から、“話す仕事”を志して学び始めました。</p>
+        <p class="about-text">会社員として働きながら、土日はキャラクターショーのMCや司会に立つ日々。その現場で、話すこと・伝えることの本質を学びました。今は言葉だけでなく、文章・映像・SNSといった“伝わる媒体”をつくり、話し方の研修を通して、その人らしさを残したまま円滑に伝わるコミュニケーションを支えています。</p>
+        <p class="career-label maru">CAREER</p>
+        <div class="career-item"><span class="career-yr maru">2018</span><span>MC・司会 活動開始。企業式典・イベントを中心に多数の現場を経験</span></div>
+        <div class="career-item"><span class="career-yr maru">2025</span><span>株式会社セクレタリア 設立（令和7年10月10日）</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMPANY ===== -->
+<section id="company">
+  <div class="wrap fade">
+    <span class="eyebrow maru">COMPANY</span>
+    <h2 class="h-sec">会社概要</h2>
+    <table>
+      <tr><th>会社名</th><td>株式会社セクレタリア（Secretaria Inc.）</td></tr>
+      <tr><th>設立</th><td>令和7年10月10日</td></tr>
+      <tr><th>代表取締役</th><td>谷 優子</td></tr>
+      <tr><th>事業内容</th><td>広報・SNS支援 / 映像・コンテンツ制作 / 事務局・プロジェクト運営 / 研修・組織づくり / 司会・MC</td></tr>
+      <tr><th>所在地</th><td>〒630-8217 奈良市橋本町3-1 BONCHI内</td></tr>
+      <tr><th>URL</th><td>https://www.mc-secretaria.com</td></tr>
+      <tr><th>公告方法</th><td><a href="kokoku.html">電子公告</a></td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section id="cta">
+  <div class="wrap fade">
+    <span class="eyebrow maru">CONTACT</span>
+    <h2 class="h-sec">まだ言葉になっていない段階から、ご相談ください。</h2>
+    <p>何を頼めばよいか決まっていなくても大丈夫です。お話を伺い、価値を伝えるための入口を一緒に整理します。</p>
+    <a href="#contact" class="btn-light">相談フォームへ</a>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="wrap fade">
+    <span class="eyebrow maru">CONTACT FORM</span>
+    <h2 class="h-sec">お問い合わせ</h2>
+    <div class="form-wrap">
+      <p class="form-note">
+        広報・SNS・映像・事務局運営・研修・司会に関するご相談はこちらから。<br>
+        返信は通常1〜3営業日以内を目安にしております。
+      </p>
+      <!--
+        ★ フォームを動かすにはFormspree（無料）の設定が必要です。
+           1. https://formspree.io/ でアカウントを作成
+           2. 新規フォームを作成 → フォームIDを取得
+           3. 下の action="..." のIDを書き換えてください
+      -->
+      <form action="https://formspree.io/f/mgobkelp" method="POST">
+        <div class="form-group">
+          <label>貴社名</label>
+          <input type="text" name="company" placeholder="株式会社◯◯">
+        </div>
+        <div class="form-group">
+          <label>ご担当者名 <span class="required">*</span></label>
+          <input type="text" name="name" required placeholder="山田 太郎">
+        </div>
+        <div class="form-group">
+          <label>メールアドレス <span class="required">*</span></label>
+          <input type="email" name="email" required placeholder="example@email.com">
+        </div>
+        <div class="form-group">
+          <label>ご相談の種類</label>
+          <select name="inquiry_type">
+            <option value="">選択してください</option>
+            <option value="pr-sns">広報・SNS支援</option>
+            <option value="movie-content">映像・コンテンツ制作</option>
+            <option value="secretariat">事務局・プロジェクト運営</option>
+            <option value="training">研修・組織づくり</option>
+            <option value="mc">司会・MC</option>
+            <option value="other">相談内容がまだ決まっていない・その他</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>ご相談内容</label>
+          <textarea name="message" placeholder="ご相談内容をご自由にお書きください"></textarea>
+        </div>
+        <button type="submit" class="btn" style="width:100%;">送信する</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Secretaria<span class="dot"></span></div>
+      <p class="footer-tagline">価値を見つけ、伝わる形にし、社会へつなぐ</p>
+    </div>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/secretaria_mc" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.facebook.com/yuko.tani" target="_blank" rel="noopener">Facebook</a>
+      <a href="kokoku.html">電子公告</a>
+    </div>
+  </div>
+  <p class="copyright">© 2025 Secretaria Inc.</p>
+</footer>
+
+<script>
+  // 小さく静かなフェードイン
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade').forEach(el => io.observe(el));
+
+  // ヘッダーの縮み
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
+
+  // ハンバーガーメニュー
+  const navToggle = document.querySelector('.nav-toggle');
+  const navMenu = document.getElementById('navMenu');
+  const navBackdrop = document.getElementById('navBackdrop');
+  function closeNav() {
+    navMenu.classList.remove('open'); navToggle.classList.remove('open');
+    navBackdrop.classList.remove('open'); navToggle.setAttribute('aria-expanded', 'false');
+  }
+  navToggle.addEventListener('click', () => {
+    const open = !navMenu.classList.contains('open');
+    navMenu.classList.toggle('open', open); navToggle.classList.toggle('open', open);
+    navBackdrop.classList.toggle('open', open); navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navBackdrop.addEventListener('click', closeNav);
+  navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+</script>
+
+</body>
+</html>
